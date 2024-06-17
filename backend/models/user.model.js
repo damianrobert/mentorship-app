@@ -30,6 +30,20 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    roles: {
+      mentee: {
+        type: Boolean,
+        default: true,
+      },
+      mentor: {
+        type: Boolean,
+        default: false,
+      },
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

@@ -6,14 +6,23 @@ export const signup = async (req, res) => {
   try {
     const { firstName, lastName, password, email, username } = req.body;
 
+    if (!firstName || !lastName || !password || !email || !username) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
     //check if user exists
     const user = await User.findOne({ email });
-    if (user) return res.status(400).json({ message: 'User already exists' });
+    if (user)
+      return res
+        .status(400)
+        .json({ message: 'User with same email already exists' });
 
     //check if username exists
     const checkUsername = await User.findOne({ username });
     if (checkUsername)
-      return res.status(400).json({ message: 'Username already exists' });
+      return res
+        .status(400)
+        .json({ message: 'This username is taken, please try another one' });
 
     //hash password
     const salt = await bcryptjs.genSalt(10);
