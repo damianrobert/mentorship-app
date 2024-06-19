@@ -2,7 +2,7 @@ import Navbar from '../../components/Navbar';
 
 const Home = () => {
   return (
-    <div className='min-h-screen bg-stone-300'>
+    <div className='min-h-screen bg-orange-50'>
       <Navbar />
     </div>
   );

@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const navigateTo =
+    (path: string) => (event: React.MouseEvent<HTMLLIElement>) => {
+      navigate(path);
+    };
+
   return (
-    <nav className='border-b-[.125rem] border-stone-400 py-2 px-4'>
+    <nav className='border-b-[.125rem] bg-slate-50 border-stone-400 py-2 px-4'>
       <div className='flex justify-between items-center'>
         <div className='flex'>
           <span className='mr-4'>Logo</span>
 
           <ol className='flex'>
-            <li className='mr-3 hover:underline text-stone-600 cursor-pointer font-bold'>
+            <li
+              className='mr-3 hover:underline text-stone-600 cursor-pointer font-bold'
+              onClick={navigateTo('/chat')}
+            >
               Chat
             </li>
 

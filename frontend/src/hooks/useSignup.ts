@@ -49,12 +49,14 @@ const useSignup = () => {
       const data = await response.json();
 
       if (data.message === 'User with same email already exists') {
-        toast.error(data.message);
+        toast.error('Un utilizator cu această adresă de email există deja!');
         return;
       }
 
       if (data.message === 'This username is taken, please try another one') {
-        toast.error(data.message);
+        toast.error(
+          'Acest nume de utilizator este deja folosit, vă rugăm să încercați altul.'
+        );
         return;
       }
 
@@ -66,7 +68,7 @@ const useSignup = () => {
         authContext.setAuthUser(data);
       }
 
-      if (success) toast.success('Signup successful');
+      if (success) toast.success('Contul a fost creat cu succes!');
       navigate('/login');
     } catch (error: any) {
       toast.error(error.message);
@@ -94,17 +96,17 @@ const handleInputErrors = ({
   username: string;
 }) => {
   if (!firstName || !lastName || !email || !password || !username) {
-    toast.error('Please fill in all fields');
+    toast.error('Vă rugăm să completați toate câmpurile');
     return false;
   }
 
   if (password.length < 8) {
-    toast.error('Password must be at least 8 characters');
+    toast.error('Parola trebuie să aibă cel puțin 8 caractere');
     return false;
   }
 
   if (username.length < 5) {
-    toast.error('Username must be at least 5 characters');
+    toast.error('Numele de utilizator trebuie să aibă cel puțin 5 caractere');
     return false;
   }
 

@@ -1,10 +1,11 @@
-import Login from './pages/login/Login';
-import SignUp from './pages/signup/Signup';
-import Home from './pages/homepage/Home';
 import './index.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
+import SignUp from './pages/signup/Signup';
+import Login from './pages/login/Login';
+import Home from './pages/homepage/Home';
+import Chat from './pages/chat/Chat';
 
 function App() {
   const authContext = useAuthContext();
@@ -21,6 +22,7 @@ function App() {
             )
           }
         />
+
         <Route
           path='/login'
           element={
@@ -31,6 +33,7 @@ function App() {
             )
           }
         />
+
         <Route
           path='/signup'
           element={
@@ -38,6 +41,17 @@ function App() {
               <Navigate to='/' />
             ) : (
               <SignUp />
+            )
+          }
+        />
+
+        <Route
+          path='/chat'
+          element={
+            authContext && authContext.authUser ? (
+              <Chat />
+            ) : (
+              <Navigate to='/login' />
             )
           }
         />
