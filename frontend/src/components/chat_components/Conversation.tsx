@@ -1,21 +1,44 @@
-const Conversation = () => {
+import useConversation from '../../zustand/useConversation';
+import { ConversationType } from '../../types/conversationType';
+
+const Conversation = ({
+  conversation,
+  lastIdx,
+  emoji,
+}: {
+  conversation: ConversationType;
+  lastIdx: boolean;
+  emoji: string;
+}) => {
+  const { selectedConversation, setSelectedConversation }: any =
+    useConversation();
+
+  const isSelected: boolean = selectedConversation?._id === conversation._id;
   return (
     <>
-      <div className='flex gap-2 items-center hover:bg-sky-500 w-full rounded px-2 py-1 cursor-pointer'>
+      <div
+        className={`flex gap-2 items-center hover:bg-sky-500 w-full rounded px-2 py-1 cursor-pointer
+        ${isSelected ? 'bg-sky-500' : ''}
+        `}
+        onClick={() => setSelectedConversation(conversation)}
+      >
         <div className='avatar online'>
           <div className='w-12 rounded-full'>
-            <img src='https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png' />
+            <img src={conversation.avatar} />
           </div>
         </div>
 
         <div className='flex flex-col flex-1'>
           <div className='flex gap-3 justify-between'>
-            <p className=' font-bold text-gray-600'>John Doe</p>
-            <span className='text-xl'>🔥</span>
+            <p className=' font-bold text-gray-600'>
+              {conversation.firstName + ' ' + conversation.lastName}{' '}
+            </p>
+            <span className='text-xl'>{emoji}</span>
           </div>
         </div>
       </div>
-      <div className='divider my-0 py-0 h-1'></div>
+
+      {!lastIdx && <div className='divider my-0 py-0 h-1'></div>}
     </>
   );
 };

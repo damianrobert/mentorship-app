@@ -1,28 +1,13 @@
 import { create } from 'zustand';
-
-interface Conversation {
-  //TODO: Define the properties of the Conversation type
-  // Define the properties of the Conversation type
-  // Example: id: number;
-
-  id: string;
-  participants: string[];
-  messages: Message[];
-}
-
-interface Message {
-  id: string;
-  content: string;
-  senderId: string;
-  receiverId: string;
-}
+import { ConversationType } from '../types/conversationType.ts';
+import { MessageType } from '../types/messageType.ts';
 
 const useConvesration = create((set) => ({
   selectedConversation: null,
-  setSelectedConversation: (selectedConversation: Conversation) =>
+  setSelectedConversation: (selectedConversation: ConversationType) =>
     set({ selectedConversation }),
   messages: [],
-  setMessages: (messages: Message) => set({ messages }),
+  setMessages: (messages: MessageType) => set({ messages }),
 }));
 
 export default useConvesration;

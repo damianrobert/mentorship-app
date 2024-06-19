@@ -26,7 +26,7 @@ const useLogin = () => {
       localStorage.setItem('auth-user-info', JSON.stringify(data));
       authContext!.setAuthUser(data);
 
-      toast.success(`Login successful as ${data.username}`);
+      toast.success(`V-ați logat cu succes ca ${data.username}`);
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -41,7 +41,7 @@ export default useLogin;
 
 function handleInputErrors(email: string, password: string) {
   if (!email || !password) {
-    toast.error('Please fill in all fields');
+    toast.error('Vă rugăm să completați toate câmpurile!');
     return false;
   }
 

@@ -1,13 +1,21 @@
+import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 const SearchInput = () => {
+  const [search, setSearch] = useState<string>('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className='flex'>
         <input
           type='text'
           placeholder='Caută...'
           className='input input-sm input-bordered rounded-full w-full bg-white text-black'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
 
         <button
