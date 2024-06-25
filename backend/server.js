@@ -5,8 +5,8 @@ import messageRoutes from './routes/message.routes.js';
 import userRoutes from './routes/user.routes.js';
 import connectDatabase from './db/connectToMongoDB.js';
 import cookieParser from 'cookie-parser';
+import { app, server } from './socket/socket.js';
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectDatabase();
   console.log(`Server running on port ${PORT}`);
   //log current time

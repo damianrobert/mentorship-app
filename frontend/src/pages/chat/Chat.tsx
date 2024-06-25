@@ -6,7 +6,10 @@ const Chat = () => {
   return (
     <div className='flex flex-col bg-slate-100'>
       <Navbar />
-      <div className='flex overflow-hidden'>
+      <div
+        className='flex overflow-hidden'
+        style={{ height: 'calc(100vh - 50px)' }}
+      >
         <div className='flex flex-col w-3/12'>
           <ChatSidebar />
         </div>

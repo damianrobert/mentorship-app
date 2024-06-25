@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { ConversationType } from '../types/conversationType.ts';
 import { MessageType } from '../types/messageType.ts';
 
-const useConvesration = create((set) => ({
+const useConversation = create((set) => ({
   selectedConversation: null,
   setSelectedConversation: (selectedConversation: ConversationType) =>
     set({ selectedConversation }),
@@ -10,4 +10,4 @@ const useConvesration = create((set) => ({
   setMessages: (messages: MessageType) => set({ messages }),
 }));
 
-export default useConvesration;
+export default useConversation;
