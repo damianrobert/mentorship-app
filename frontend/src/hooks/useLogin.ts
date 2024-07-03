@@ -4,7 +4,6 @@ import { useAuthContext } from '../context/AuthContext';
 
 const useLogin = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [userDetails, setUserDetails] = useState({});
   const authContext = useAuthContext();
 
   const login = async (email: string, password: string) => {
@@ -20,7 +19,6 @@ const useLogin = () => {
 
       const data = await res.json();
       console.log(data);
-      setUserDetails(data);
       if (data.error) throw new Error(data.error);
 
       localStorage.setItem('auth-user-info', JSON.stringify(data));
@@ -28,7 +26,9 @@ const useLogin = () => {
 
       toast.success(`V-ați logat cu succes ca ${data.username}`);
     } catch (error: any) {
-      toast.error(error.message);
+      if (error.message === 'Invalid username or password') {
+        toast.error('Email sau parolă greșită!');
+      } else toast.error(error.message);
     } finally {
       setLoading(false);
     }

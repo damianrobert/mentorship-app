@@ -1,11 +1,10 @@
 import { useAuthContext } from '../../../context/AuthContext';
-import { MessageType } from '../../../types/messageType';
 import { extractTime } from '../../../utils/extractTime';
 import useConversation from '../../../zustand/useConversation';
 
-const Message = ({ message }: { message: MessageType }) => {
-  const { authUser } = useAuthContext();
-  const { selectedConversation } = useConversation();
+const Message = ({ message }: { message: any }) => {
+  const { authUser }: any = useAuthContext();
+  const { selectedConversation }: any = useConversation();
   const fromMe: boolean = message.senderId === authUser._id;
   const formattedTime = extractTime(message.createdAt);
   const chatClassName = fromMe ? 'chat-end' : 'chat-start';

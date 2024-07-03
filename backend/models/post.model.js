@@ -8,14 +8,22 @@ const postSchema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
     },
     content: {
-      type: Text,
+      type: String,
       required: true,
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
+    },
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
       required: true,
     },
     likes: {
@@ -24,11 +32,18 @@ const postSchema = mongoose.Schema(
     comments: {
       //ref to postComments
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'postComments',
     },
+    genre: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
-const Post = mongoose.models.posts || mongoose.model.apply('posts', postSchema);
+const Post = mongoose.models.posts || mongoose.model('posts', postSchema);
 
 export default Post;

@@ -4,23 +4,38 @@ const courseSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
     },
     description: {
       type: String,
-      required: true,
     },
     instructor: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      ref: 'users',
     },
     difficulty: {
       type: String,
-      required: true,
     },
     categories: {
-      type: [String], // Array of strings to store multiple categories/rankings
-      required: true,
+      type: [String],
+    },
+    status: {
+      started: {
+        type: Boolean,
+        default: false,
+      },
+      completed: {
+        type: Boolean,
+        default: false,
+      },
+    },
+    video: {
+      type: String, // URL or GridFS ID
+    },
+    files: {
+      type: [String], // Array of URLs or GridFS IDs
+    },
+    backgroundImage: {
+      type: String, // URL or GridFS ID
     },
   },
   { timestamps: true }

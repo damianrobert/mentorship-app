@@ -8,6 +8,8 @@ import {
 import { AuthContext, useAuthContext } from './AuthContext';
 import { Socket, io } from 'socket.io-client';
 
+AuthContext.displayName = 'AuthContext';
+
 const SocketContext = createContext<any>(null);
 
 export const useSocketContext = () => {
