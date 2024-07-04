@@ -160,7 +160,18 @@ const WriteMode = () => {
         </div>
 
         <div className='flex items-center mt-4'>
-          <input type='checkbox' className='checkbox checkbox-accent mr-2' />
+          <input
+            type='checkbox'
+            className='checkbox checkbox-accent mr-2'
+            onChange={(e) =>
+              setInputs({
+                ...inputs,
+                genre: e.target.checked
+                  ? [...inputs.genre, 'Securitate cibernetică']
+                  : inputs.genre.filter((g) => g !== 'Securitate cibernetică'),
+              })
+            }
+          />
           <label className='text-zinc-300 font-semibold'>
             Securitate cibernetică
           </label>

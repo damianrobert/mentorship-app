@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import useConvesration from '../zustand/useConversation';
+import useConversation from '../zustand/useConversation';
 import toast from 'react-hot-toast';
 
 const useGetMessages = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { messages, setMessages, selectedConversation }: any =
-    useConvesration();
+    useConversation();
 
   useEffect(() => {
     const getMessages = async () => {

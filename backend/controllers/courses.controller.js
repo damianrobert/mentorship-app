@@ -54,3 +54,25 @@ export const getCourses = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+export const getCourseById = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+
+    res.status(200).json(course);
+  } catch (error) {
+    console.log('Error in getCourseById controller: ', error.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const getCourseByAuthorId = async (req, res) => {
+  try {
+    const courses = await Course.find({ instructor: req.params.authorId });
+
+    res.status(200).json(courses);
+  } catch (error) {
+    console.log('Error in getCourseByAuthorId controller: ', error.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

@@ -18,14 +18,6 @@ const postSchema = mongoose.Schema(
       ref: 'users',
       required: true,
     },
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
     likes: {
       type: Number,
     },

@@ -22,7 +22,13 @@ const MessageContainer = () => {
       ) : (
         <div className='flex flex-col flex-grow overflow-hidden'>
           <div className='bg-slate-300 px-4 py-2 mb-2 '>
-            <MessagesHeader />
+            <MessagesHeader
+              toUser={
+                selectedConversation.firstName +
+                ' ' +
+                selectedConversation.lastName
+              }
+            />
           </div>
 
           <div className='px-4 overflow-y-scroll h-full'>

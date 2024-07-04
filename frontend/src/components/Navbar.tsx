@@ -55,14 +55,7 @@ const Navbar = () => {
               LinkHub
             </li>
 
-            <li
-              className='mr-3 hover:underline text-stone-600 cursor-pointer font-bold'
-              onClick={navigateTo('/courses')}
-            >
-              Cursuri
-            </li>
-
-            {authUser.roles.mentor === true ? (
+            {authUser?.roles?.mentor ? (
               <li
                 className='mr-3 hover:underline text-stone-600 cursor-pointer font-bold'
                 onClick={navigateTo('/mentorTab')}
@@ -71,7 +64,14 @@ const Navbar = () => {
               </li>
             ) : null}
 
-            {authUser.isAdmin === true ? (
+            <li
+              className='mr-3 hover:underline text-stone-600 cursor-pointer font-bold'
+              onClick={navigateTo('/courses')}
+            >
+              Cursuri
+            </li>
+
+            {authUser?.isAdmin === true ? (
               <li
                 className='mr-3 hover:underline text-stone-600 cursor-pointer font-bold'
                 onClick={navigateTo('/controlPanel')}

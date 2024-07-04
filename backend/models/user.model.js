@@ -40,6 +40,18 @@ const userSchema = new mongoose.Schema(
         default: false,
       },
     },
+    enrolledCourses: [
+      {
+        courseId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Course',
+        },
+        enrolledAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
     isAdmin: {
       type: Boolean,
       default: false,

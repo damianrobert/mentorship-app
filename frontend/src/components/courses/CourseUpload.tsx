@@ -9,7 +9,7 @@ const CourseUpload = () => {
     title: '',
     description: '',
     instructor: authUser._id,
-    categories: [],
+    categories: [] as string[],
     video: '',
     files: '',
     background_image: '',
@@ -114,6 +114,94 @@ const CourseUpload = () => {
                 setCourse({ ...course, background_image: e.target.value })
               }
             />
+          </div>
+
+          <div>
+            <div className='flex mt-4'>
+              <input
+                type='checkbox'
+                className='checkbox checkbox-primary'
+                onChange={(e) =>
+                  setCourse({
+                    ...course,
+                    categories: e.target.checked
+                      ? [...course.categories, 'Programare']
+                      : course.categories.filter((g) => g !== 'Programare'),
+                  })
+                }
+              />
+              <p className='ml-2 text-semibold text-black'>Programare</p>
+            </div>
+
+            <div className='flex mt-4'>
+              <input
+                type='checkbox'
+                className='checkbox checkbox-primary'
+                onChange={(e) =>
+                  setCourse({
+                    ...course,
+                    categories: e.target.checked
+                      ? [...course.categories, 'Marketing']
+                      : course.categories.filter((g) => g !== 'Marketing'),
+                  })
+                }
+              />
+              <p className='ml-2 text-semibold text-black'>Marketing</p>
+            </div>
+
+            <div className='flex mt-4'>
+              <input
+                type='checkbox'
+                className='checkbox checkbox-primary'
+                onChange={(e) =>
+                  setCourse({
+                    ...course,
+                    categories: e.target.checked
+                      ? [...course.categories, 'Economie']
+                      : course.categories.filter((g) => g !== 'Economie'),
+                  })
+                }
+              />
+              <p className='ml-2 text-semibold text-black'>Economie</p>
+            </div>
+
+            <div className='flex mt-4'>
+              <input
+                type='checkbox'
+                className='checkbox checkbox-primary'
+                onChange={(e) =>
+                  setCourse({
+                    ...course,
+                    categories: e.target.checked
+                      ? [...course.categories, 'Științe aplicate']
+                      : course.categories.filter(
+                          (g) => g !== 'Științe aplicate'
+                        ),
+                  })
+                }
+              />
+              <p className='ml-2 text-semibold text-black'>Științe aplicate</p>
+            </div>
+
+            <div className='flex mt-4'>
+              <input
+                type='checkbox'
+                className='checkbox checkbox-primary'
+                onChange={(e) =>
+                  setCourse({
+                    ...course,
+                    categories: e.target.checked
+                      ? [...course.categories, 'Securitate cibernetică']
+                      : course.categories.filter(
+                          (g) => g !== 'Securitate cibernetică'
+                        ),
+                  })
+                }
+              />
+              <p className='ml-2 text-semibold text-black'>
+                Securitate cibernetică
+              </p>
+            </div>
           </div>
 
           <div className='flex justify-end'>
