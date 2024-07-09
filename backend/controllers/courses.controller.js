@@ -9,6 +9,7 @@ export const postCourses = async (req, res) => {
       instructor,
       difficulty,
       categories,
+      offeredResources,
       video,
       files,
       backgroundImage,
@@ -20,6 +21,7 @@ export const postCourses = async (req, res) => {
       instructor,
       difficulty,
       categories,
+      offeredResources,
       video,
       files,
       backgroundImage,
@@ -34,6 +36,7 @@ export const postCourses = async (req, res) => {
       instructor: newCourse.instructor,
       difficulty: newCourse.difficulty,
       categories: newCourse.categories,
+      offeredResources: newCourse.offeredResources,
       video: newCourse.video,
       files: newCourse.files,
       backgroundImage: newCourse.backgroundImage,
@@ -73,6 +76,17 @@ export const getCourseByAuthorId = async (req, res) => {
     res.status(200).json(courses);
   } catch (error) {
     console.log('Error in getCourseByAuthorId controller: ', error.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const deleteCourse = async (req, res) => {
+  try {
+    await Course.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ message: 'Course deleted successfully' });
+  } catch (error) {
+    console.log('Error in deleteCourse controller: ', error.message);
     res.status(500).json({ message: 'Internal server error' });
   }
 };

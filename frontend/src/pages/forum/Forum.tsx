@@ -53,21 +53,25 @@ const Forum = () => {
             {loading ? (
               <div className='loading loading-spinner w-fit h-fit mx-auto my-auto'></div>
             ) : (
-              articles.map((article: any) => (
-                <div
-                  key={article._id}
-                  onClick={() => handlePostSelect(article)}
-                >
-                  <PostCard
-                    title={article.title}
-                    firstName={article.firstName}
-                    lastName={article.lastName}
-                    createdAt={article.createdAt}
-                    genre={article.genre}
-                    authorId={article.author}
-                  />
-                </div>
-              ))
+              articles
+                .sort(
+                  (a: any, b: any) =>
+                    Number(new Date(b.createdAt)) -
+                    Number(new Date(a.createdAt))
+                )
+                .map((article: any) => (
+                  <div
+                    key={article._id}
+                    onClick={() => handlePostSelect(article)}
+                  >
+                    <PostCard
+                      title={article.title}
+                      createdAt={article.createdAt}
+                      genre={article.genre}
+                      authorId={article.author}
+                    />
+                  </div>
+                ))
             )}
           </div>
         </div>

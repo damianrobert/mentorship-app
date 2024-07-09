@@ -23,10 +23,18 @@ const Course = ({
         className='w-full h-32 object-cover rounded-t-lg'
       />
       <h3 className='text-xl font-semibold mt-4'>{title}</h3>
-      <p className='text-gray-700 mt-2'>{description}</p>
-      <p className='text-gray-700 mt-2'>
-        Predat de: {user?.firstName + ' ' + user?.lastName}
-      </p>
+      <p className='text-gray-700 mt-2 overflow-hidden h-7'>{description}</p>
+
+      <div className='flex items-center '>
+        <p className='text-gray-700 mt-2'>
+          Predat de:
+          {' ' + user?.firstName + ' ' + user?.lastName}
+        </p>
+        <div className='w-fit ml-2 pt-3'>
+          <img className='w-[20px]' src={user?.avatar} alt='profile pic' />{' '}
+        </div>
+      </div>
+
       <p className='text-gray-700 mt-2'>Pentru: {categories + ' '}</p>
     </div>
   );

@@ -30,6 +30,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    posts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post',
+      },
+    ],
     roles: {
       mentee: {
         type: Boolean,
@@ -49,6 +55,37 @@ const userSchema = new mongoose.Schema(
         enrolledAt: {
           type: Date,
           default: Date.now,
+        },
+        started: {
+          type: Boolean,
+          default: false,
+        },
+        done: {
+          type: Boolean,
+          default: false,
+        },
+        completedAt: {
+          type: Date,
+        },
+      },
+    ],
+    finishedCourses: {
+      type: Number,
+    },
+    mentees: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    requests: [
+      {
+        from: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+        },
+        requestMessage: {
+          type: String,
         },
       },
     ],

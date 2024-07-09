@@ -15,6 +15,7 @@ export const usePostCourses = () => {
       });
 
       const data = await res.json();
+
       if (data.error) throw new Error(data.error);
 
       toast.success('Cursul a fost adăugat cu succes!');

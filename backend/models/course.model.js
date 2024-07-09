@@ -18,24 +18,17 @@ const courseSchema = mongoose.Schema(
     categories: {
       type: [String],
     },
-    status: {
-      started: {
-        type: Boolean,
-        default: false,
-      },
-      completed: {
-        type: Boolean,
-        default: false,
-      },
+    offeredResources: {
+      type: String,
     },
     video: {
-      type: String, // URL or GridFS ID
+      type: String, 
     },
     files: {
-      type: [String], // Array of URLs or GridFS IDs
+      type: [String], 
     },
     backgroundImage: {
-      type: String, // URL or GridFS ID
+      type: String, 
     },
   },
   { timestamps: true }

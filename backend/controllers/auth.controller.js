@@ -10,25 +10,21 @@ export const signup = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    //check if user exists
     const user = await User.findOne({ email });
     if (user)
       return res
         .status(400)
         .json({ message: 'User with same email already exists' });
 
-    //check if username exists
     const checkUsername = await User.findOne({ username });
     if (checkUsername)
       return res
         .status(400)
         .json({ message: 'This username is taken, please try another one' });
 
-    //hash password
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
-    //http://avatar-placeholder.iran.liara.run/
     const avatar = `https://avatar.iran.liara.run/username?username=${firstName}+${lastName}`;
 
     const newUser = new User({
@@ -41,7 +37,6 @@ export const signup = async (req, res) => {
     });
 
     if (newUser) {
-      //generate jwt
       generateTokenAndSetCookie(newUser._id, res);
       await newUser.save();
 

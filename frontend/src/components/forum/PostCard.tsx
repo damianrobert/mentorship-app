@@ -1,17 +1,12 @@
-import { useState } from 'react';
 import { useGetUserById } from '../../hooks/useGetUserById';
 
 const PostCard = ({
   title,
-  firstName,
-  lastName,
   createdAt,
   genre,
   authorId,
 }: {
   title: string;
-  firstName: string;
-  lastName: string;
   createdAt: string;
   genre: string[];
   authorId: string;

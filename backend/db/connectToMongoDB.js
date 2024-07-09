@@ -9,8 +9,6 @@ const connectDatabase = async () => {
     console.log(`user: ${connection.connection.user}`);
     console.log(`pass: ${connection.connection.pass}`);
     console.log(`id: ${connection.connection.id}`);
-
-    //console.log(connection.connection);
   } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);

@@ -110,7 +110,5 @@ const handleInputErrors = ({
     return false;
   }
 
-  //TODO: Add more validation
-
   return true;
 };

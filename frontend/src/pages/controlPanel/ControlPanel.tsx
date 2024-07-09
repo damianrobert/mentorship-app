@@ -1,11 +1,42 @@
-import { useState } from 'react';
+import { ReactInstance, useRef, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import UserBlock from '../../components/controlPanel/UserBlock';
 import useGetUsers from '../../hooks/useGetUsers';
+import CoursePrint from '../../components/courses/CoursePrint';
+import { useReactToPrint } from 'react-to-print';
 
 const ControlPanel = () => {
   const { loading, users } = useGetUsers();
   const [showUsers, setShowUsers] = useState<boolean>(false);
+  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const componentRef = useRef(null);
+
+  const userCourses = selectedUser?.enrolledCourses as object[];
+  const userPosts = selectedUser?.posts as object[];
+
+  const numberOfCourses = userCourses?.length;
+  const numberOfFinishedCourses = selectedUser?.finishedCourses;
+  const numberOfPosts = userPosts?.length;
+
+  const formatDate = (dateString: string): string => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('ro-RO', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(date);
+  };
+
+  const handleSelectedUser = (user: any) => {
+    setSelectedUser(user);
+    console.log(user);
+  };
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <div className='bg-white h-screen'>
       <Navbar />
@@ -30,17 +61,25 @@ const ControlPanel = () => {
           {showUsers
             ? users.map((user: any) => (
                 <>
-                  <UserBlock
+                  <div
                     key={user._id}
-                    id={user._id}
-                    firstName={user.firstName}
-                    lastName={user.lastName}
-                    email={user.email}
-                    password={user.password}
-                    username={user.username}
-                    roles={user.roles}
-                    isAdmin={user.isAdmin}
-                  />
+                    className='cursor-pointer'
+                    onClick={() => handleSelectedUser(user)}
+                  >
+                    <UserBlock
+                      key={user._id}
+                      id={user._id}
+                      firstName={user.firstName}
+                      lastName={user.lastName}
+                      email={user.email}
+                      password={user.password}
+                      username={user.username}
+                      roles={user.roles}
+                      isAdmin={user.isAdmin}
+                      selected={selectedUser?._id === user._id}
+                      selectedUser={selectedUser}
+                    />
+                  </div>
                   <div className='divider'></div>
                 </>
               ))
@@ -52,35 +91,54 @@ const ControlPanel = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             <div className='bg-blue-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Înregistrat din</h3>
-              <p className='text-gray-700'>Ianuarie 1, 2020</p>
+              <p className='text-gray-700'>
+                {formatDate(selectedUser?.createdAt)}
+              </p>
             </div>
             <div className='bg-green-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Cursuri înrolate</h3>
-              <p className='text-gray-700'>5</p>
+              <p className='text-gray-700'>{numberOfCourses}</p>
             </div>
             <div className='bg-yellow-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Cursuri terminate</h3>
-              <p className='text-gray-700'>3</p>
+              <p className='text-gray-700'>
+                {numberOfFinishedCourses === undefined
+                  ? '0'
+                  : numberOfFinishedCourses}
+              </p>
             </div>
             <div className='bg-purple-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Postări</h3>
-              <p className='text-gray-700'>10</p>
+              <p className='text-gray-700'>{numberOfPosts}</p>
             </div>
             <div className='bg-red-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>
                 Timp petrecut înrolat în cursuri
               </h3>
-              <p className='text-gray-700'>50 hours</p>
+              <p className='text-gray-700'>0</p>
             </div>
             <div className='bg-indigo-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Număr discipoli</h3>
-              <p className='text-gray-700'>2</p>
+              <p className='text-gray-700'>0</p>
             </div>
 
             <div className='bg-pink-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Insigne</h3>
-              <p className='text-gray-700'>4</p>
+              <p className='text-gray-700'>0</p>
             </div>
+          </div>
+        </div>
+
+        <div className='mt-10'>
+          <h1 className='text-black font-bold'>Evidența cursurilor</h1>
+          <button
+            className='btn btn-sm btn-primary btn-outline'
+            onClick={handlePrint}
+          >
+            Printeaza cursurile
+          </button>
+          <div ref={componentRef}>
+            <CoursePrint />
           </div>
         </div>
       </div>

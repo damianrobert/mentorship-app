@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 app.use(cors());
 
-app.use(express.json()); // to parse the incoming requests with JSON payloads
+app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
@@ -33,6 +33,5 @@ app.use('/api/auth', authRoutes);
 server.listen(PORT, () => {
   connectDatabase();
   console.log(`Server running on port ${PORT}`);
-  //log current time
   console.log(new Date().toLocaleString());
 });

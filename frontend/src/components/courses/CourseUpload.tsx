@@ -10,6 +10,8 @@ const CourseUpload = () => {
     description: '',
     instructor: authUser._id,
     categories: [] as string[],
+    offeredResources: '' as string,
+    difficulty: '' as string,
     video: '',
     files: '',
     background_image: '',
@@ -61,6 +63,42 @@ const CourseUpload = () => {
               }
               required
             ></textarea>
+          </div>
+
+          <div className='mb-4'>
+            <label
+              htmlFor='offeredResources'
+              className='block text-gray-700 font-bold mb-2'
+            >
+              Ce materiale oferă cursul?
+            </label>
+            <input
+              type='text'
+              id='offeredResources'
+              name='offeredResources'
+              className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300'
+              onChange={(e) =>
+                setCourse({ ...course, offeredResources: e.target.value })
+              }
+            />
+          </div>
+
+          <div className='mb-4'>
+            <label
+              htmlFor='difficulty'
+              className='block text-gray-700 font-bold mb-2'
+            >
+              Dificultatea cursului
+            </label>
+            <input
+              type='text'
+              id='difficulty'
+              name='difficulty'
+              className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300'
+              onChange={(e) =>
+                setCourse({ ...course, difficulty: e.target.value })
+              }
+            />
           </div>
 
           <div className='mb-4'>

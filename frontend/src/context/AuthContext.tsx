@@ -5,21 +5,20 @@ interface Roles {
   mentor: boolean;
 }
 
-// Define the interface for AuthUser
 interface AuthUser {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   username: string;
-  avatar?: string; // optional property with a default value
+  avatar?: string;
   roles: Roles;
   isAdmin: boolean;
-  createdAt?: string; // optional timestamp
-  updatedAt?: string; // optional timestamp
+  createdAt?: string;
+  updatedAt?: string;
+  mentees?: string[];
 }
 
-// Define the interface for AuthContextType
 interface AuthContextType {
   authUser: AuthUser | null;
   setAuthUser: React.Dispatch<React.SetStateAction<AuthUser | null>>;
