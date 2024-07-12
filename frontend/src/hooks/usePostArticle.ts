@@ -8,7 +8,7 @@ const usePostArticle = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/posts/postArticle', {
+      const res = await fetch(`/api/posts/postArticle`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ post }),

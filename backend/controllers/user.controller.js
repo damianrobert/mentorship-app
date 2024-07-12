@@ -114,3 +114,35 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+export const finishCourse = async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const userId = req.params.id;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const courseIndex = user.enrolledCourses.findIndex(
+      (course) => course.courseId.toString() === courseId
+    );
+
+    if (courseIndex === -1) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    user.enrolledCourses.splice(courseIndex, 1);
+
+    user.finishedCourses += 1;
+
+    await user.save();
+
+    return res.status(200).json({ message: 'Course completed successfully' });
+  } catch (error) {
+    console.log('Error in finishCourse controller: ', error.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

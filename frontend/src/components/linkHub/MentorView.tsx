@@ -2,7 +2,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import usePutAsignMentor from '../../hooks/usePutAsignMentor';
 
 const MentorView = ({ mentor }: any) => {
-  const { loading, putAsignMentor }: any = usePutAsignMentor();
+  const { putAsignMentor }: any = usePutAsignMentor();
   const { authUser }: any = useAuthContext();
 
   const handleAsignMentor = () => {

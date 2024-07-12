@@ -71,6 +71,7 @@ const userSchema = new mongoose.Schema(
     ],
     finishedCourses: {
       type: Number,
+      default: 0,
     },
     mentees: [
       {

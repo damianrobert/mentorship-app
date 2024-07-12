@@ -1,6 +1,7 @@
 import Post from '../models/post.model.js';
 
 export const postArticle = async (req, res) => {
+  const userId = req.params.userId;
   try {
     const { post } = req.body;
     const { title, content, author, genre, firstName, lastName } = post;

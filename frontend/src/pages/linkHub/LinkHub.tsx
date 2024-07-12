@@ -7,7 +7,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 
 const LinkHub = () => {
   const [selectedMentor, setSelectedMentor] = useState(null);
-  const { loading, users }: any = useGetUsers();
+  const { users }: any = useGetUsers();
   const mentors = users.filter((user: any) => user.roles.mentor);
 
   return (

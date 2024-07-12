@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAuthContext } from '../../context/AuthContext';
 import { useGetUserById } from '../../hooks/useGetUserById';
 import usePutEnrollCourse from '../../hooks/usePutEnrollCourse';
@@ -10,7 +10,7 @@ const CourseView = ({ course }: any) => {
   const { authUser }: any = useAuthContext();
   const { deleteCourse }: any = useDeleteCourse();
   const user = useGetUserById(course.instructor);
-  const { loading, putEnrollCourse }: any = usePutEnrollCourse();
+  const { putEnrollCourse }: any = usePutEnrollCourse();
 
   const myCourse = authUser._id === course.instructor;
 

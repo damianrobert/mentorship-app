@@ -23,7 +23,7 @@ const Profile = () => {
   const userPosts = user.posts as object[];
 
   const numberOfCourses = userCourses?.length;
-  const numberOfFinishedCourses = authUser?.finishedCourses;
+  const numberOfFinishedCourses = user?.finishedCourses;
   const numberOfPosts = userPosts?.length;
 
   return (
@@ -102,11 +102,7 @@ const Profile = () => {
             </div>
             <div className='bg-yellow-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Cursuri terminate</h3>
-              <p className='text-gray-700'>
-                {numberOfFinishedCourses === undefined
-                  ? '0'
-                  : numberOfFinishedCourses}
-              </p>
+              <p className='text-gray-700'>{numberOfFinishedCourses}</p>
             </div>
             <div className='bg-purple-100 p-4 rounded-lg shadow-lg border-b-2 border-[#ffffff]'>
               <h3 className='text-lg font-semibold'>Postări</h3>

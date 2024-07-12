@@ -1,4 +1,4 @@
-import { ReactInstance, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import UserBlock from '../../components/controlPanel/UserBlock';
 import useGetUsers from '../../hooks/useGetUsers';
@@ -30,7 +30,6 @@ const ControlPanel = () => {
 
   const handleSelectedUser = (user: any) => {
     setSelectedUser(user);
-    console.log(user);
   };
 
   const handlePrint = useReactToPrint({
